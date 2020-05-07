@@ -28,6 +28,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/materialize-social/css/materialize.min.css",
+              "node_modules/materialize-social/materialize-social.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "HelpCoin"
+    }
+  },
+  "defaultProject": "HelpCoin",
+  "cli": {
+    "analytics": false
+  }
 }
