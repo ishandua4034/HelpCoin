@@ -18,30 +18,30 @@ export class LoginGoogleComponent implements OnInit {
 
   signIn(): void{
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((user: SocialUser)=>{
-      this.userObj.emit(user);},
-    (err)=>{console.log(err)});   
+      this.userObj.emit(user);},  //emits user object
+    (err)=>{console.log("error inside login-goofle component 22: ",err)});   
   } 
 
-  signOut(): void {
-    this.authService.signOut(true);
-  }
+  // signOut(): void {
+  //   this.authService.signOut(true);
+  // }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user)=>{
-      if(user){
-      this.userData = new LoggedUserData(
-                user.name, 
-                user.photoUrl, 
-                user.email
-                );
-      this.loggedIn=true;
-      this.user=user; //user object saved in local variable user
-      this.userObj.emit(user); //emits user object 
-      }else{
-        this.userData = new LoggedUserData('','','');
-        this.loggedIn=false;
-      }
-    },(err)=>{alert('Error: ' + err);}) //alert if throws any error
+    // this.authService.authState.subscribe((user)=>{
+    //   if(user){
+    //   this.userData = new LoggedUserData(
+    //             user.name, 
+    //             user.photoUrl, 
+    //             user.email
+    //             );
+    //   this.loggedIn=true;
+    //   this.user=user; //user object saved in local variable user
+       
+    //   }else{
+    //     this.userData = new LoggedUserData('','','');
+    //     this.loggedIn=false;
+    //   }
+    // },(err)=>{alert('error inside login-goofle component 44: ' + err);}) //alert if throws any error
     
   }
 
