@@ -10,10 +10,7 @@ import { LoggedUserData } from '../models/user.model';
 export class LoginGoogleComponent implements OnInit { 
 
   @Output() userObj = new EventEmitter<SocialUser>();  //custom event of this component created to emit user Object 
-  userData: LoggedUserData;
-  private user: SocialUser;
-  loggedIn= false;
-
+  
   constructor(private authService: AuthService) { }
 
   signIn(): void{
@@ -22,27 +19,6 @@ export class LoginGoogleComponent implements OnInit {
     (err)=>{console.log("error inside login-goofle component 22: ",err)});   
   } 
 
-  // signOut(): void {
-  //   this.authService.signOut(true);
-  // }
-
-  ngOnInit(): void {
-    // this.authService.authState.subscribe((user)=>{
-    //   if(user){
-    //   this.userData = new LoggedUserData(
-    //             user.name, 
-    //             user.photoUrl, 
-    //             user.email
-    //             );
-    //   this.loggedIn=true;
-    //   this.user=user; //user object saved in local variable user
-       
-    //   }else{
-    //     this.userData = new LoggedUserData('','','');
-    //     this.loggedIn=false;
-    //   }
-    // },(err)=>{alert('error inside login-goofle component 44: ' + err);}) //alert if throws any error
-    
-  }
+  ngOnInit(): void {}
 
 }
