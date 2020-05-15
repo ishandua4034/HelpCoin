@@ -27,4 +27,5 @@ export class HomeComponent implements OnInit {
     this.router.navigate([''])});
   }
 
+ 
 }

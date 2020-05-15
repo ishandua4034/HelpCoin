@@ -8,12 +8,14 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginformComponent,
-    HomeComponent
+    HomeComponent,
+    TestcomponentComponent
   ],
   imports: [
     BrowserModule,

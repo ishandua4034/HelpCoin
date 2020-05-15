@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SocialUser } from 'angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { SocialUsers } from '../models/socialusers.model';
-import { Subject, throwError } from 'rxjs';
+import { Subject, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 //interface to save get the responce in interface type. Interface is simmilar to locla model
@@ -19,7 +19,7 @@ export interface AuthResponseData{
 @Injectable({providedIn: 'root'})
 export class LoginAuthService{
 
-    user = new Subject<SocialUsers>();
+    currentUrl = '/'; //set url on load in everypage to keep a track of in every http request
     constructor(private http: HttpClient){}
     
     login(user: SocialUser){
@@ -28,21 +28,7 @@ export class LoginAuthService{
         const headers = { 'content-type': 'application/json'}  
         const body=JSON.stringify(socialUser);
 
-        return this.http.post<AuthResponseData>('http://localhost:3000/user', body,{'headers':headers}
-        ).pipe(catchError(error => 
-            {return throwError(error)}),
-            tap(resData =>{
-                const user = new SocialUsers(
-                    resData.provider,
-                    resData.id,
-                    resData.email,
-                    resData.name,
-                    resData.imageUrl,
-                    resData.token,
-                    resData.idToken);
-
-                this.user.next(user);
-            }));
+        return this.http.post<AuthResponseData>('http://localhost:3000/user', body,{'headers':headers});
             
     }
 

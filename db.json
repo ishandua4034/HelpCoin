@@ -1,13 +1,35 @@
 {
   "user": [
+    
+  ],
+  "user_list": [
     {
-      "provider": "GOOGLE",
-      "id": "100632547636483569086",
-      "email": "ishan.dua5826@gmail.com",
-      "name": "Ishan Dua",
-      "imageUrl": "https://lh3.googleusercontent.com/a-/AOh14GhOXaz5G-EupXmokRpRi0lQt0mF183DcYXV38v-UQ=s96-c",
-      "token": "ya29.a0AfH6SMBDB1ScCl9d_aVdt4nHrBbNoqj6WOygNUilotK_Z8AEIBsloe0yV4pcx2NgBBixAJ-iuzF729VrmAgNK-GuTXmAUY0UqKTcMtXUbw0aNPGdYgjXtUGWjqo5aQVEtriaE9D0tbjk_1cGK_CnbolJGAp3qY8GHoE",
-      "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImMxNzcxODE0YmE2YTcwNjkzZmI5NDEyZGEzYzZlOTBjMmJmNWI5MjciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMTA2NTU3OTY5OTQzOS1rZTAwajAzNzVkMDA0cWduZ2x1aW9mcGs3dTVndGg4cS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjEwNjU1Nzk2OTk0Mzkta2UwMGowMzc1ZDAwNHFnbmdsdWlvZnBrN3U1Z3RoOHEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDA2MzI1NDc2MzY0ODM1NjkwODYiLCJlbWFpbCI6ImlzaGFuLmR1YTU4MjZAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIxUWg3X2RHZnFEM3cyRXZ0Sk90Q3R3IiwibmFtZSI6IklzaGFuIER1YSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHaE9YYXo1Ry1FdXBYbW9rUnBSaTBsUXQwbUYxODNEY1lYVjM4di1VUT1zOTYtYyIsImdpdmVuX25hbWUiOiJJc2hhbiIsImZhbWlseV9uYW1lIjoiRHVhIiwibG9jYWxlIjoiZW4tR0IiLCJpYXQiOjE1ODkyNTk2ODAsImV4cCI6MTU4OTI2MzI4MCwianRpIjoiYzgzMDMwN2I3OWRlNTc2OWMyYmFlYWI5ZTc4MGVjNmY2YjBkZjgzOSJ9.RTyFdiR-hTN3zkgO8BoZMfO8xRBEUvl4iulGf6DkX1HjSwv_esjhdD9CcXtLyLjcOwEprJypdz15rARtTRX3ZRT8xggL-TE0wmHcgITprYFa1CfnTDhegnzqnHHVCG71DlpkQrjtHU60_FdI9I2Dy7cuLXvfchdyD0YbhxBYNnjxxnLKYUNhkeZj9723fm43UVu8UK-3pVdJ-9AGcO0LGOAJkqX63dzF2Co_HAF5Ip_MiiHhOq1pyejcqBFp7itClaFXxVoEu6YeeyeiU63NmLJu8am8TkvlMPV836jmHLVmIe5mQIKHQeJjUdGoZMwRrO9v8njL-tG9hkkjo3X6gA"
+      "name": "Virat Kohli",
+      "id": "101"
+    },
+    {
+      "name": "David Warner",
+      "id": "102"
+    },
+    {
+      "name": "MS Dhoni",
+      "id": "103"
+    },
+    {
+      "name": "Jhulan Goswami",
+      "id": "104"
+    },
+    {
+      "name": "Ricky Ponting",
+      "id": "105"
+    },
+    {
+      "name": "Chris Gayle",
+      "id": "106"
+    },
+    {
+      "name": "Sarah Taylor",
+      "id": "107"
     }
   ]
 }
