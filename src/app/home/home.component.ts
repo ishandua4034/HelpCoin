@@ -1,31 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
-import { SocialUsers } from '../models/socialusers.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {}
 
-  logout(){
-    //Logout and clearing locl storage
+  logout() {
+    // Logout and clearing local storage
     this.authService.signOut();
-    localStorage.removeItem('socialusers');
-    localStorage.removeItem('token');
-    localStorage.clear();
+    this.userService.clearData();
 
-    // redirecting to the same page itself so that authguard can be checked again
-    this.router.navigateByUrl('/temphome', { skipLocationChange: true 
-    }).then(() => {
-    this.router.navigate([''])});
+    // redirecting to the same page after Logout
+    this.router
+      .navigateByUrl('/temphome', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['']);
+      });
   }
-
- 
 }

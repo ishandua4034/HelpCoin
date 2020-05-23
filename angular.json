@@ -32,7 +32,9 @@
               "node_modules/materialize-social/materialize-social.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/materialize-social/js/materialize.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,4 +1,7 @@
-<div>
+<div (click)="signIn();" #ref>
+    <ng-content></ng-content>
+</div>
+<div *ngIf="!ref.innerHTML.trim()">
     <button (click)="signIn()" class="waves-effect waves-light btn social google"><i class="fa fa-google"></i>Login by Google</button>
 </div>
 

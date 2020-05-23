@@ -21,7 +21,10 @@
 
       <div class="center-align" id="socialbtn">
         <p class="center-align">Or Login Using</p>
-        <app-login-google (userObj)="OnSignIn($event)"></app-login-google>
+        <login-google (Success)="OnSignIn($event)" (failure)="OnLoginFail($event)"></login-google>
+      </div>
+      <div *ngIf=loginFail>
+        <p style="color: red;">{{ errorMessage }}</p>
       </div>
     </div>
   </div>

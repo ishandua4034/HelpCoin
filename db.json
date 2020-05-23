@@ -1,6 +1,14 @@
 {
   "user": [
-    
+    {
+      "provider": "GOOGLE",
+      "id": "111330112265722171611",
+      "email": "ishan.dua01@gmail.com",
+      "name": "ISHAN DUA",
+      "imageUrl": "https://lh3.googleusercontent.com/a-/AOh14Ghw3-K1xXMkvsWEUP_Yc8JNwPHzRWsI732q-4-BjpM=s96-c",
+      "token": "ya29.a0AfH6SMDxdqW8HMlOlrI1XzNDaQeqhm9-y4nl8nJUxPy7XOG8YD4wA9AngCwd7t6Ih_XYLMhWmtusTLgoXQuW6RW43ffuvCLdAmFBKpwPecPZGQ5GsXoGq1V-D_tEl7MGCYpposFn54HBHWcfzkJ5xfZC1nb_982PSOKG",
+      "idToken": "ya29.a0AfH6SMDxdqW8HMlOlrI1XzNDaQeqhm9-y4nl8nJUxPy7XOG8YD4wA9AngCwd7t6Ih_XYLMhWmtusTLgoXQuW6RW43ffuvCLdAmFBKpwPecPZGQ5GsXoGq1V-D_tEl7MGCYpposFn54HBHWcfzkJ5xfZC1nb_982PSOKG"
+    }
   ],
   "user_list": [
     {
