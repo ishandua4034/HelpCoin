@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth.guard';
 import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 import { UserProfileComponent } from './user-info/user-profile/user-profile.component';
+import { UserProfileDetailComponent } from './user-info/user-profile-detail/user-profile-detail.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginformComponent },
   { path: 'temphome', component: HomeComponent },
   { path: 'userlist', component: TestcomponentComponent },
-  { path: 'userinfo', component: UserProfileComponent },
+  { path: 'userprofile', component: UserProfileComponent },
+  { path: 'userprofiledetail', component: UserProfileDetailComponent}
 ];
 
 @NgModule({

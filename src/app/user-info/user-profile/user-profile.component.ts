@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ɵNAMESPACE_URIS } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // url and name will be fetched using API currently hard coded
+    // fetching  url and name using API || currently hard coded
     this.url = 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
     this.name = 'Ishan Dua';
     if (this.url === null) {
@@ -46,5 +45,4 @@ export class UserProfileComponent implements OnInit {
     document.body.removeChild(canvas);
     return data;
   }
-
 }

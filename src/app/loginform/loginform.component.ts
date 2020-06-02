@@ -21,7 +21,7 @@ export class LoginformComponent implements OnInit {
   ) {}
 
   OnSignIn(user) {
-    // service to to post data on server. Saving response to local Storage
+    // service to post data on server. Saving response to local Storage
     this.loginFail = false;
     this.authService.login(user).subscribe(
       (res: any) => {

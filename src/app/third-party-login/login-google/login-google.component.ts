@@ -1,9 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import {
-  AuthService,
-  GoogleLoginProvider,
-  SocialUser,
-} from 'angularx-social-login';
+import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import { Users } from '../models/user';
 
 @Component({
@@ -16,6 +12,7 @@ export class LoginGoogleComponent implements OnInit {
   // custom events to emit response
   @Output() Success = new EventEmitter<Users>();
   @Output() failure = new EventEmitter();
+
   user: Users;
   failureObj: {loginFail: boolean, message: string};
   constructor(private authService: AuthService) {}

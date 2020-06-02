@@ -1,0 +1,46 @@
+<div class="container">
+    <br><br>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="input-field col s8 offset-s2 m4 offset-m2">
+                <i class="material-icons prefix">account_circle</i>
+                <label for="first_name">First Name</label>
+                <input id="first_name" type="text" formControlName="formFirstName">
+                <span *ngIf="!profileForm.get('formFirstName').valid && !disabled" class="error-text">Enter a valid first name</span>
+            </div>
+            <div class="input-field col s7 offset-s3 m4 offset-m2 pull-m2">
+                <label for="last_name">Last Name</label>
+                <input id="last_name" type="text" formControlName="formLastName">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s8 m8 offset-s2 offset-m2">
+                <i class="material-icons prefix">email</i>
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="formEmail">
+                <span *ngIf="!profileForm.get('formEmail').valid && !disabled" class="error-text">Enter a valid Email address</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s8 m8 offset-s2 offset-m2">
+                <i class="material-icons prefix">phone</i>
+                <label for="mobile_num">Telephone</label>
+                <input id="mobile_num" type="tel" formControlName="formMobile">
+                <span *ngIf="!profileForm.get('formMobile').valid && !disabled" class="error-text">Enter a valid Mobile number</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s2 m2 offset-m8 offset-s5">
+                <button *ngIf="disabled" class="btn" type="button" (click)="onEdit()">Edit</button>
+                <button *ngIf="!disabled" class="btn" type="submit" [disabled]="!profileForm.valid">Save</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+

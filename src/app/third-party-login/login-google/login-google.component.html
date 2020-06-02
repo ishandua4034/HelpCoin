@@ -1,6 +1,9 @@
+<!-- template if custom button template passed   -->
 <div (click)="signIn();" #ref>
     <ng-content></ng-content>
 </div>
+
+<!-- template if custom button template is not passed   -->
 <div *ngIf="!ref.innerHTML.trim()">
     <button (click)="signIn()" class="waves-effect waves-light btn social google"><i class="fa fa-google"></i>Login by Google</button>
 </div>
