@@ -1,19 +1,18 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
-import { Users } from '../models/user';
+import { User } from '../models/user';
 
 @Component({
   selector: 'login-google',
-  templateUrl: './login-google.component.html',
-  styleUrls: ['./login-google.component.scss'],
+  templateUrl: './login-google.component.html'
 })
-export class LoginGoogleComponent implements OnInit {
+export class LoginGoogleComponent {
 
   // custom events to emit response
-  @Output() Success = new EventEmitter<Users>();
+  @Output() success = new EventEmitter<User>();
   @Output() failure = new EventEmitter();
 
-  user: Users;
+  user: User;
   failureObj: {loginFail: boolean, message: string};
   constructor(private authService: AuthService) {}
 
@@ -21,7 +20,7 @@ export class LoginGoogleComponent implements OnInit {
   signIn(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (socialUser: SocialUser) => {
-        this.user = new Users(
+        this.user = new User(
           socialUser.provider,
           socialUser.id,
           socialUser.email,
@@ -31,7 +30,7 @@ export class LoginGoogleComponent implements OnInit {
           socialUser.idToken
         );
 
-        this.Success.emit(this.user); // emits user object
+        this.success.emit(this.user); // emits user object
       },
       (err) => {
         this.failureObj = {loginFail: true, message: err};
@@ -40,5 +39,4 @@ export class LoginGoogleComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
 }

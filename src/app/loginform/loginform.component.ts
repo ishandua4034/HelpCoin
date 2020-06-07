@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginAuthService } from '../services/login.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Users } from '../models/users.model';
+import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class LoginformComponent implements OnInit {
           this.userService.setData(
             'activeusers',
             JSON.stringify(
-              new Users(
+              new User(
                 user.provider,
                 user.id,
                 user.email,

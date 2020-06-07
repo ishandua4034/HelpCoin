@@ -1,5 +1,5 @@
 
-export class Users {
+export class User {
   provider: string;
   id: string;
   email: string;
