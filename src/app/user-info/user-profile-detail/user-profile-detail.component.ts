@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-user-profile-detail',

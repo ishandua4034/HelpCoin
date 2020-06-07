@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginGoogleComponent } from './login-google/login-google.component';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
+import { configuration } from '../Configuration/config';
 
-
-const googleClientId = '1065579699439-ke00j0375d004qgngluiofpk7u5gth8q.apps.googleusercontent.com';
+// assigning clientId saved in config.ts file
+const googleClientId = configuration.googleClientId;
 
 const config = new AuthServiceConfig([{
   id: GoogleLoginProvider.PROVIDER_ID,

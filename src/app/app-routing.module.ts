@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth.guard';
 import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 import { UserProfileComponent } from './user-info/user-profile/user-profile.component';
 import { UserProfileDetailComponent } from './user-info/user-profile-detail/user-profile-detail.component';
+import { PollComponent } from './poll/poll.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'temphome', component: HomeComponent },
   { path: 'userlist', component: TestcomponentComponent },
   { path: 'userprofile', component: UserProfileComponent },
-  { path: 'userprofiledetail', component: UserProfileDetailComponent}
+  { path: 'userprofiledetail', component: UserProfileDetailComponent},
+  { path: 'poll', component: PollComponent}
 ];
 
 @NgModule({

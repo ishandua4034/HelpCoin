@@ -14,20 +14,25 @@ import { UserService } from './services/user.service';
 import { LoginAuthService } from './services/login.service';
 import { AuthGuard } from './services/auth.guard';
 import { TestService } from './services/test.service';
+import { PollComponent } from './poll/poll.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginformComponent,
     HomeComponent,
-    TestcomponentComponent
+    TestcomponentComponent,
+    PollComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ThirdPartyLoginModule,
     HttpClientModule,
-    UserInfoModule
+    UserInfoModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

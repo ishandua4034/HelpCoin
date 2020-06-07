@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as M from 'materialize-css/dist/js/materialize';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,6 +15,10 @@ export class UserProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // initalizing dropdown
+    const elems = document.querySelectorAll('.dropdown-trigger');
+    const instances = M.Dropdown.init(elems, {});
+
     // fetching  url and name using API || currently hard coded
     this.url = 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
     this.name = 'Ishan Dua';
