@@ -1,7 +1,7 @@
-import { CanActivate, RouterStateSnapshot, UrlTree, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LoginAuthService } from './login.service';
+import { CanActivate, RouterStateSnapshot, UrlTree, ActivatedRouteSnapshot, Router } from "@angular/router";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { LoginAuthService } from "./login.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate{
@@ -14,11 +14,11 @@ export class AuthGuard implements CanActivate{
     | UrlTree
     | Promise<boolean | UrlTree>
     | Observable<boolean | UrlTree>{
-        this.token = localStorage.getItem('token');
+        this.token = localStorage.getItem("token");
         if (!!this.token){
             return true;
         }else{
-            return this.router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url }});
+            return this.router.createUrlTree(["/login"], { queryParams: { returnUrl: state.url }});
         }
     }
 }

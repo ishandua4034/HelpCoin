@@ -1,7 +1,7 @@
 <div>
    <button class="btn" (click)="addData()">Add user with ID 101</button>
+   <app-user-login-avatar [userObj]="usersObj"></app-user-login-avatar>
 </div>
-
 <div>
     <h1>List of Users </h1>
     <div *ngIf=!isData>    <button class="btn" (click)="getData()">Get List</button> </div>

@@ -1,26 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ThirdPartyLoginModule } from './third-party-login/third-party-login.module';
-import { LoginformComponent } from './loginform/loginform.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
-import { TestcomponentComponent } from './testcomponent/testcomponent.component';
-import { UserInfoModule } from './user-info/user-info.module';
-import { UserService } from './services/user.service';
-import { LoginAuthService } from './services/login.service';
-import { AuthGuard } from './services/auth.guard';
-import { TestService } from './services/test.service';
-import { PollComponent } from './poll/poll.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { LoginModule } from "./login/login.module";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HomeComponent } from "./home/home.component";
+import { AuthInterceptorService } from "./services/auth-interceptor.service";
+import { TestcomponentComponent } from "./testcomponent/testcomponent.component";
+import { UserInfoModule } from "./user-info/user-info.module";
+import { UserService } from "./services/user.service";
+import { LoginAuthService } from "./services/login.service";
+import { AuthGuard } from "./services/auth.guard";
+import { PollComponent } from "./poll/poll.component";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material/material.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginformComponent,
     HomeComponent,
     TestcomponentComponent,
     PollComponent
@@ -28,11 +27,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ThirdPartyLoginModule,
+    LoginModule,
     HttpClientModule,
     UserInfoModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

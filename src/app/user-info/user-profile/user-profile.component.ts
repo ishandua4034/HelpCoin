@@ -1,53 +1,100 @@
-import { Component, OnInit } from '@angular/core';
-import * as M from 'materialize-css/dist/js/materialize';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss'],
-
+  selector: "app-user-profile",
+  templateUrl: "./user-profile.component.html",
+  styleUrls: ["./user-profile.component.scss"],
 })
 export class UserProfileComponent implements OnInit {
 
-  url: string = null;
-  name: string;
-  size = '57';
-  constructor() { }
+  // custome property and event
+  @Input() userProfile: { username: string; email: string; mobile: string };
+  @Output() update = new EventEmitter<{username: string; email: string; mobile: string; }>();
+
+  // local variables
+  disabled = true;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  profileForm: FormGroup;
 
   ngOnInit(): void {
-    // initalizing dropdown
-    const elems = document.querySelectorAll('.dropdown-trigger');
-    const instances = M.Dropdown.init(elems, {});
+    // Custome Input hardcoded, will remove below line later
+    this.userProfile = {username: "Ishan Dua", email: "ishan.dua@5826gmail.com", mobile: "9501940555"};
 
-    // fetching  url and name using API || currently hard coded
-    this.url = 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-    this.name = 'Ishan Dua';
-    if (this.url === null) {
-      this.url = this.getInitials(this.name);
-    }
+    // assigning Custome Input value to local variables
+    this.getProfileDetails();
+
+    // Reactive Form Controls
+    this.profileForm = new FormGroup({
+      formFirstName: new FormControl( this.firstName, Validators.required ),
+      formLastName: new FormControl( this.lastName ),
+      formEmail: new FormControl( this.email, [Validators.required, Validators.email]),
+      formMobile: new FormControl( this.mobile, Validators.required)
+    });
+    this.profileForm.disable();
   }
 
-  // method to create URL of image with initials of first and last name
-  getInitials(name: string){
-    const canvas = document.createElement('canvas');
-    canvas.style.display = 'none';
-    canvas.width = 128;
-    canvas.height = 128;
-    document.body.appendChild(canvas);
-    const context = canvas.getContext('2d');
-    context.fillStyle = 'black';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    context.font = '64px Arial';
-    context.fillStyle = 'white';
-    const nameArray = name.split(' ');
-    let initials = nameArray[0].substring(0, 1).toUpperCase();
-    if (nameArray.length > 1){
-      initials += nameArray[nameArray.length - 1].substring(0, 1).toUpperCase();
+  // function to enable/disable form
+  onEdit() {
+    this.profileForm.enable();
+    this.disabled = !this.disabled;
+  }
+
+  // function to call mehtod of emmiting updated data and disabling form
+  onSubmit() {
+    this.setProfileDetails();
+    this.profileForm.disable();
+    this.disabled = !this.disabled;
+  }
+
+  // function to get profile Details from Input Element
+  getProfileDetails() {
+    const username = this.userProfile.username.split(" ");
+
+    if (username.length > 1) {
+      this.lastName = username.pop();
+      this.firstName = username.join(" ");
+    } else {
+      this.lastName = "";
+      this.firstName = this.userProfile.username;
     }
-    context.textAlign = 'center';
-    context.fillText(initials, 64, 85);
-    const data = canvas.toDataURL();
-    document.body.removeChild(canvas);
-    return data;
+    this.email = this.userProfile.email;
+    this.mobile = this.userProfile.mobile;
+  }
+
+  // function to update profile details to server || Currently HardCoded
+  setProfileDetails() {
+    this.firstName = this.profileForm.get("formFirstName").value;
+    this.lastName = this.profileForm.get("formLastName").value;
+    this.email = this.profileForm.get("formEmail").value;
+    this.mobile = this.profileForm.get("formMobile").value;
+
+    // code here to send data to server
+    if (this.lastName !== "") {
+      this.update.emit({
+        username: this.firstName.concat(" ", this.lastName),
+        email: this.email,
+        mobile: this.mobile,
+      });
+    } else {
+      this.update.emit({
+        username: this.firstName,
+        email: this.email,
+        mobile: this.mobile,
+      });
+    }
+
+    // to see updated value, we will remove this code later
+    console.log(
+      "name is ",
+      this.firstName.concat(" ", this.lastName),
+      ", email Id is ",
+      this.email,
+      ", Mobile No. is ",
+      this.mobile
+    );
   }
 }

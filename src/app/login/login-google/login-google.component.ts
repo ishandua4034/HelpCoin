@@ -1,14 +1,16 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
-import { User } from '../models/user';
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { AuthService, GoogleLoginProvider, SocialUser } from "angularx-social-login";
+import { User } from "../models/user";
 
 @Component({
-  selector: 'login-google',
-  templateUrl: './login-google.component.html'
+  // tslint:disable-next-line:component-selector
+  selector: "login-google",
+  templateUrl: "./login-google.component.html"
 })
 export class LoginGoogleComponent {
 
   // custom events to emit response
+  // tslint:disable-next-line:no-output-native
   @Output() success = new EventEmitter<User>();
   @Output() failure = new EventEmitter();
 
