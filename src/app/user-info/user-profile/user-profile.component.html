@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <br><br>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
@@ -41,6 +41,45 @@
         </div>
 
     </form>
-</div>
+</div> -->
 
+
+<mat-card>
+    <mat-card-title>
+
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="profileForm">
+            <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Personal data
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone No.</mat-label>
+                    <input matInput type="tel">
+                    <mat-icon matSuffix>phone</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="myDatepicker">
+                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker></mat-datepicker>
+                </mat-form-field>
+                </mat-expansion-panel>
+            </mat-accordion>  
+            
+        </form>
+    </mat-card-content>
+</mat-card>
 

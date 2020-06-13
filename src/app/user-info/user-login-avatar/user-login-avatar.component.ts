@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import * as M from "materialize-css/dist/js/materialize";
 import { User } from "src/app/models/user";
 
 @Component({
@@ -11,14 +10,11 @@ import { User } from "src/app/models/user";
 export class UserLoginAvatarComponent implements OnInit {
 
   @Input() userObj: User;
+  @Input() avatarSize = 45;
   url: string = null;
   name: string;
-  size = "45";
 
   ngOnInit(): void {
-    // initalizing dropdown
-    const elems = document.querySelectorAll(".dropdown-trigger");
-    M.Dropdown.init(elems, {});
 
     // assigning URL and name from UserObj to local variables
     this.name = this.userObj.name;

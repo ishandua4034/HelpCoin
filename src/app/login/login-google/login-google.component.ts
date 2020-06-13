@@ -1,6 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
 import { AuthService, GoogleLoginProvider, SocialUser } from "angularx-social-login";
 import { User } from "../models/user";
+
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,6 +15,7 @@ export class LoginGoogleComponent {
   // tslint:disable-next-line:no-output-native
   @Output() success = new EventEmitter<User>();
   @Output() failure = new EventEmitter();
+  @Input() btnName = "Login With Google";
 
   user: User;
   failureObj: {loginFail: boolean, message: string};

@@ -15,7 +15,7 @@ export class User {
     this.email = email;
     this.name = name;
     this. imageUrl = imageUrl;
-    this.token = token;
-    this.idToken = token;
+    this.token = token; // authorization access token
+    this.idToken = token; // Id Token containing al the infomation of user
   }
 }

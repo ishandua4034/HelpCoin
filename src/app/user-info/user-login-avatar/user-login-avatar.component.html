@@ -1,15 +1,12 @@
-<div class="container">
-    <div class="row"></div>
-    <div class="row">
-        <div class="col s3">
-            <img class="dropdown-trigger circle" href='javascript:void(0);' 
-            data-target='demoDropdown' [src]="url" [height]=size [width]=size [title]="name">
-
-            <ul id='demoDropdown' class='dropdown-content'>
-              <li><a href="javascript:void(0);">Profile</a></li>
-              <li><a href="javascript:void(0);">Sign Out</a></li>
-          </ul>
-        </div>
- </div>
+<mat-card [ngStyle]="{'display': 'contents'}">
+  <mat-card-header [ngStyle]="{'display': 'contents'}">
+    <img mat-card-avatar [matMenuTriggerFor]="menu" matTooltip="{{name}}" matTooltipPosition="below" 
+      href='javascript:void(0);' [src]="url" [ngStyle]="{'height': avatarSize+'px' , 'width': avatarSize+'px'}">
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>Sign Out</button>
+    </mat-menu>
+  </mat-card-header>
+</mat-card>
 
   

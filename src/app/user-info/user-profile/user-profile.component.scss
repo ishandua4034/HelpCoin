@@ -24,3 +24,16 @@
    }
    
 
+
+   mat-form-field, mat-checkbox {
+      width: 80%;
+      display: block;
+      margin: auto;
+    }
+
+    mat-card {
+      width: 40%;
+      margin: 5% auto;
+      border-radius: 8px;
+    }
+

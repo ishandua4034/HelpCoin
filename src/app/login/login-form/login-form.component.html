@@ -1,37 +1,130 @@
-<div class="container">
-  <div class="row">
 
-    <div class="col s6 offset-s3 z-depth-1" id="panell">
+<!-- Signin Block -->
+<mat-card class="mat-elevation-z12" *ngIf="signIn">
+  <img class="logo" [src]="config.logo" alt="Photo of a Shiba Inu">
+  <mat-card-title style="text-align:center; margin-bottom: 5%;">{{config.brandTitle}}</mat-card-title>
+  <mat-card-subtitle>Login to your Account</mat-card-subtitle>
 
-      <!-- Login Form -->
-      <h5 id="title">Login Form</h5>
-      <form>
-        <div class="input-field" id="username">
-          <input type="text" class="validate">
-          <label for="username">Username</label>
-        </div>
-        <div class="input-field" id="password">
-          <input type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-        <p>
-          <input type="checkbox" id="remember" />
-          <label for="remember" id="checkbox">Remember me</label>
-        </p>
-        <a class="waves-effect waves-light btn" id="loginbtn">Login</a>
-      </form>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #myform="ngForm">
+      <mat-error *ngIf="!isLoggedIn" class="login-error">Email or Password is incorrect.</mat-error>
 
-      <!-- third Party Login button -->
-      <div class="center-align" id="socialbtn">
-        <p class="center-align">Or Login Using</p>
-        <login-google (success)="OnSignIn($event)" (failure)="OnLoginFail($event)"></login-google>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="username" id="email" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="loginForm.get('username').hasError('required') 
+                              && ( loginForm.get('username').dirty || myform.submitted )">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="!loginForm.get('username').hasError('required') && !loginForm.get('username').valid
+                              && ( loginForm.get('username').dirty || myform.submitted )">
+          Email is Invalid
+        </mat-error>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
 
-      <!-- Error Message if login fails -->
-      <div *ngIf=loginFail>
-        <p style="color: red;">{{ errorMessage }}</p>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" type="password" formControlName="password" id="password" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="loginForm.get('password').hasError('required') 
+                              && ( loginForm.get('password').dirty || myform.submitted )">
+          Password is required
+        </mat-error>
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" type="submit" class="login-button">
+        {{config.loginBtnName}}
+      </button>
 
-    </div>
-  </div>
-</div>
+      <button mat-raised-button color="primary" type="button" class="login-button" (click)="onCancel()">
+        {{config.cancelBtnName}}
+      </button>
+    </form>
+  </mat-card-content>
+
+  <!-- Google Social Login Button -->
+  <mat-card-content style="text-align:center;" *ngIf="config.showGoogleLogin">
+    - Or -
+    <login-google (success)="onSignIn($event)" (failure)="OnLoginFail($event)"></login-google>
+    <mat-error *ngIf="loginFail" class="social-login-error">{{errorMessage}}</mat-error>
+  </mat-card-content>
+
+  <!-- footer content -->
+  <mat-card-content class="footer">Don't have an account? 
+    <a href="javascript:void(0);" (click)="navigate()">Signup</a>
+  </mat-card-content>
+
+</mat-card>
+
+<!-- Sing Up block -->
+<mat-card class="mat-elevation-z12" *ngIf="!signIn">
+  <img class="logo" [src]="config.logo" alt="Photo of a Shiba Inu">
+  <mat-card-title style="text-align:center; margin-bottom: 5%;">{{config.brandTitle}}</mat-card-title>
+  <mat-card-subtitle>Create your Account</mat-card-subtitle>
+
+  <mat-card-content>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" #mySignUpform="ngForm">
+      <mat-error *ngIf="!isSignedUp" class="login-error">User already exist</mat-error>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="username" id="email" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signUpForm.get('username').hasError('required') 
+                  && ( signUpForm.get('username').dirty || mySignUpform.submitted )">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="!signUpForm.get('username').hasError('required') 
+                  && signUpForm.get('username').dirty
+                  && !signUpForm.get('username').valid">
+          Enter a valid Email
+        </mat-error>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" type="password" formControlName="password" id="password" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signUpForm.get('password').hasError('required') 
+                  && (signUpForm.get('password').dirty || mySignUpform.submitted )">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="!signUpForm.get('password').hasError('required') 
+                  && !signUpForm.get('password').valid && signUpForm.get('password').dirty">
+          Password should contain 6 or more character
+        </mat-error>
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput placeholder="Password" type="password" formControlName="confirmPassword" id="confirmPassword" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="!signUpForm.get('confirmPassword').valid 
+                  && signUpForm.get('confirmPassword').dirty">
+          Password does not match
+        </mat-error>
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="login-button">
+        {{config.signUpBtnName}}
+      </button>
+      <button mat-raised-button color="primary" type="button" class="login-button" (click)="onCancel()">
+        {{config.cancelBtnName}}
+      </button>
+    </form>
+  </mat-card-content>
+
+  <!-- Google Social SignUp Button -->
+  <mat-card-content style="text-align:center;" *ngIf="config.showGoogleLogin">
+    - Or -
+    <login-google (success)="onSignIn($event)" (failure)="OnLoginFail($event)" [btnName]="'Sign up with Google'">
+    </login-google>
+    <mat-error *ngIf="loginFail" class="social-login-error">{{errorMessage}}</mat-error>
+  </mat-card-content>
+
+  <!-- footer content -->
+  <mat-card-content class="footer">Already have an Account 
+    <a href="javascript:void(0);" (click)="navigate()">SignIn</a>
+  </mat-card-content>
+</mat-card>

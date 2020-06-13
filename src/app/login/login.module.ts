@@ -4,6 +4,9 @@ import { LoginGoogleComponent } from "./login-google/login-google.component";
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from "angularx-social-login";
 import { configuration } from "./config";
 import { LoginformComponent } from "./login-form/login-form.component";
+import { MaterialModule } from "../material/material.module";
+import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 const googleClientId = configuration.googleClientId;
 
@@ -20,7 +23,10 @@ export function provideConfig(){
   declarations: [LoginGoogleComponent, LoginformComponent],
   imports: [
     CommonModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

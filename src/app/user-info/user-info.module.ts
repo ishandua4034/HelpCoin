@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UserLoginAvatarComponent } from "./user-login-avatar/user-login-avatar.component";
+import { MaterialModule } from "../material/material.module";
 
 
 
@@ -10,7 +11,8 @@ import { UserLoginAvatarComponent } from "./user-login-avatar/user-login-avatar.
   declarations: [UserLoginAvatarComponent, UserProfileComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [UserLoginAvatarComponent, UserProfileComponent]
 })

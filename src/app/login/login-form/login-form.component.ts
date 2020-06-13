@@ -1,8 +1,16 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { LoginAuthService } from "../../services/login.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { UserService } from "../../services/user.service";
+import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder, FormGroupDirective, NgForm } from "@angular/forms";
 import { User } from "../models/user";
+import { LoginFormConfig } from "../models/login-form-config";
+import { ErrorStateMatcher } from "@angular/material/core";
+
+// Error when invalid control is dirty, or submitted.
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!((control.dirty || isSubmitted) && control.invalid && control);
+  }
+}
 
 @Component({
   selector: "app-login-form",
@@ -11,64 +19,111 @@ import { User } from "../models/user";
 })
 export class LoginformComponent implements OnInit {
 
-  @Input() config: {loginBtnName: string, cancelBtnName: string, showGoogleLogin: boolean,
-                    showFacebookLogin: boolean, brandTitle: string, logo: string};
-  @Output() loginData = new EventEmitter<{userName: string, password: string}>();
+  // Custom property and event
+  @Input() config: LoginFormConfig = new LoginFormConfig();
+  @Input() isLoggedIn = true;
+  @Input() isSignedUp = true;
+  @Output() loginData = new EventEmitter<{username: string, password: string}>();
+  @Output() signUpData = new EventEmitter<{username: string, password: string}>();
+  @Output() socialUserObj = new EventEmitter<User>();
+  @Output() cancel = new EventEmitter<void>();
 
-  returnUrl: string;
-  loginFail = false;
+  // Local variables
+  loginForm: FormGroup;
+  signUpForm: FormGroup;
+  username: string;
+  password: string;
+  userObj: User;
   errorMessage: string;
-  constructor(
-    private authService: LoginAuthService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private userService: UserService
-  ) {}
+  loginFail = false;
+  signIn = true;
+  matcher: MyErrorStateMatcher;
 
-  OnSignIn(user) {
-    // service to post data on server. Saving response to local Storage
-    this.loginFail = false;
-    this.authService.login(user).subscribe(
-      (res: any) => {
-        this.userService.setData("activeusers", JSON.stringify(res));
-        this.userService.setData("token", res.token);
-        this.router.navigateByUrl(this.returnUrl);
-      },
-      (err) => {
-        // storing the user object returned by Google as user model in local storage if data is already present on server
-        if (err.status === 500) {
-          this.userService.setData(
-            "activeusers",
-            JSON.stringify(
-              new User(
-                user.provider,
-                user.id,
-                user.email,
-                user.name,
-                user.imageUrl,
-                user.token,
-                user.idToken
-              )
-            )
-          );
-          this.userService.setData("token", user.authToken);
-          this.router.navigateByUrl(this.returnUrl); // returning back to the page from where this page was routed
-        } else {
-          console.log("login form component error at line 20: ", err);
-        }
-      }
-    );
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    // Reactive form controls
+    this.loginForm = this.formBuilder.group({
+      username: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required]
+    });
+
+    this.signUpForm = this.formBuilder.group({
+      username: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ["", Validators.required]
+    }, { validator: this.MatchPassword });
+
+    // Initiating custom error property
+    this.matcher = new MyErrorStateMatcher();
   }
 
+  // emit login Data if form is valid
+  onSubmit(){
+    if (this.loginForm.valid) {
+      this.username = this.loginForm.get("username").value;
+      this.password = this.loginForm.get("password").value;
+      this.loginData.emit({username: this.username, password: this.password});
+    }
+  }
+
+  // emits signp Data if signUpForm is Valid
+  onSignUp(){
+    if (this.signUpForm.valid) {
+      this.username = this.signUpForm.get("username").value;
+      this.password = this.signUpForm.get("password").value;
+      this.signUpData.emit({username: this.username, password: this.password});
+    }
+  }
+
+  // emits User Object on social Login
+  onSignIn(user) {
+    this.loginFail = false;
+    this.userObj = new User(
+      user.provider,
+      user.id,
+      user.email,
+      user.name,
+      user.imageUrl,
+      user.token,
+      user.idToken
+    );
+
+    this.socialUserObj.emit(this.userObj);
+  }
+
+  // handels Social Login Fail
   OnLoginFail(object){
     this.loginFail = object.loginFail;
     this.errorMessage = object.message;
   }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe((params: Params) => {
-      // tslint:disable-next-line:no-string-literal
-      this.returnUrl = params["returnUrl"];
-    });
+  // triggers cancel observable
+  onCancel(){
+    console.log(this.signUpForm.get("password").errors);
+    this.cancel.emit();
   }
+
+  // navigates to same page and swichtes between signIn and SignUp
+  navigate(){
+    this.signIn = !this.signIn;
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+   });
+  }
+
+  // matchPassword Custom Validator
+  MatchPassword(control: AbstractControl) {
+    const password = control.get("password").value;
+    const confirmPassword = control.get("confirmPassword").value;
+    if (password !== confirmPassword) {
+      control.get("confirmPassword").setErrors({ ConfirmPassword: true });
+    }
+    else {
+      return null;
+    }
+  }
+
 }
