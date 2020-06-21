@@ -65,6 +65,7 @@ export class LoginformComponent implements OnInit {
       this.password = this.loginForm.get("password").value;
       this.loginData.emit({username: this.username, password: this.password});
     }
+    this.loginFail = false;
   }
 
   // emits signp Data if signUpForm is Valid
@@ -74,6 +75,7 @@ export class LoginformComponent implements OnInit {
       this.password = this.signUpForm.get("password").value;
       this.signUpData.emit({username: this.username, password: this.password});
     }
+    this.loginFail = false;
   }
 
   // emits User Object on social Login
@@ -101,6 +103,7 @@ export class LoginformComponent implements OnInit {
   // triggers cancel observable
   onCancel(){
     console.log(this.signUpForm.get("password").errors);
+    this.loginFail = false;
     this.cancel.emit();
   }
 
@@ -111,7 +114,8 @@ export class LoginformComponent implements OnInit {
       top: 0,
       left: 0,
       behavior: "smooth"
-   });
+    });
+    this.loginFail = false;
   }
 
   // matchPassword Custom Validator

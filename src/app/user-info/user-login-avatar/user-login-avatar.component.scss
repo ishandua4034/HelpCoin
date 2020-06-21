@@ -1,2 +1,10 @@
 
 
+:host .mat-fab {
+    background-color: #3b3635;
+    ::ng-deep .mat-button-wrapper {
+        padding: 0px 0;
+        display: inline-block;
+        line-height: 24px;
+    }
+} 

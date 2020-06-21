@@ -50,6 +50,7 @@
     </mat-card-title>
     <mat-card-content>
         <form [formGroup]="profileForm">
+            <img mat-card-image class="mat-card-image" src="https://lh3.googleusercontent.com/a-/AOh14Ghw3-K1xXMkvsWEUP_Yc8JNwPHzRWsI732q-4-BjpM=s96-c">
             <mat-accordion>
                 <mat-expansion-panel>
                   <mat-expansion-panel-header>
@@ -57,7 +58,7 @@
                       Personal data
                     </mat-panel-title>
                   </mat-expansion-panel-header>
-                  <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
                     <input matInput type="text">
                 </mat-form-field>
@@ -76,8 +77,57 @@
                     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                     <mat-datepicker #myDatepicker></mat-datepicker>
                 </mat-form-field>
+
                 </mat-expansion-panel>
-            </mat-accordion>  
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Professional Information
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Education</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Occupation</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Occupation Name</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Designation</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Social Information
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Instagram Account</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Facebook Account</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tweeter Account</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Linkedin Account</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </mat-expansion-panel>
+            </mat-accordion>   
             
         </form>
     </mat-card-content>
